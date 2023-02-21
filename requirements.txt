@@ -1,0 +1,11 @@
+flask
+Flask-Cors
+numpy
+numpyencoder
+Flask-DebugToolbar
+pymysql-manager
+python-socketio==5.0.4
+python-socketio-client
+eventlet
+schedule
+networkx

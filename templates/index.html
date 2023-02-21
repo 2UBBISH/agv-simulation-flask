@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>agv仿真</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/static/js/lib/html5shiv.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/static/js/lib/respond.min.js"></script><![endif]-->
+
+    <link href="/static/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/index.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="/static/js/lib/moment.min.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/lib/socket.io/socket.io.min.js"></script>
+    <script type="text/javascript" src="/static/js/lib/underscore.min.js"></script>
+    <script type="text/javascript" src="/static/js/index.js"></script>
+
+</head>
+<body>
+<div class="total-main">
+    <div class="left">
+        <table id="map" class="map">
+        </table>
+    </div>
+    <div class="right">
+        <div class="btns">
+            <form>
+                <div class="form-group">
+                    <input type="button" class="btn btn-primary" id="btn-update-config" value="更新配置"/>
+                    <input type="button" class="btn btn-primary" id="btn-start-mission" value="开始作业"/>
+                    <input type="button" class="btn btn-warning" id="btn-stop-mission" value="停止作业"/>
+                    <select id="mySelect" onchange="algorithmChange()" class="form-control" style="display: inline;width: 180px; height: 34px;">
+                        <option value="1">算法1（ecbs）</option>
+                        <option value="2">算法2（cbs）</option>
+                        <option value="3" selected>算法3（ecbs+cbs）</option>
+                    </select>
+                    <label><input type="checkbox" id="checkbox-check-collision">勾选检测碰撞</label>
+                </div>
+            </form>
+        </div>
+        <div class="config">
+            <form>
+                <div class="form-group">
+                    <label for="mapSizeWidth">地图宽度</label>
+                    <input type="text" class="form-control" id="mapSizeWidth" disabled placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="mapSizeHeight">地图高度</label>
+                    <input type="text" class="form-control" id="mapSizeHeight" disabled placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="agvNum">agv数量</label>
+                    <input type="text" class="form-control" id="agvNum" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="rackPosList">货架坐标点集合</label>
+                    <textarea rows="4" class="form-control" id="rackPosList" placeholder="">
+                    </textarea>
+                </div>
+                <div class="form-group">
+                    <label for="startPosList">起始点坐标集合</label>
+                    <textarea rows="4" class="form-control" id="startPosList" placeholder="">
+                    </textarea>
+                </div>
+                <div class="form-group">
+                    <label for="endPosList">结束点坐标集合</label>
+                    <textarea rows="4" class="form-control" id="endPosList" placeholder="">
+                    </textarea>
+                </div>
+
+            </form>
+        </div>
+        <div class="status-panel">
+            <ul id="agv-pos-list">
+            </ul>
+            <ul id="info-list">
+                <li>
+                    <span class="info-name">发生碰撞次数：</span>
+                    <span id="collision-num" class="info">0</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
